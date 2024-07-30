@@ -1,0 +1,11 @@
+Flask
+airtable-python-wrapper
+transformers
+torch
+scikit-learn
+tqdm
+numpy
+openai==0.28
+python-dotenv
+spacy
+nltk

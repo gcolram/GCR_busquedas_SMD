@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: mi-api-flask
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    envVars:
+      - key: OPENAI_API_KEY
+        value: "tu_valor_de_api_key"
+      - key: AIRTABLE_TOKEN
+        value: "tu_valor_de_airtable_token"
+      - key: AIRTABLE_BASE_ID
+        value: "tu_valor_de_airtable_base_id"
+      - key: AIRTABLE_TABLE_NAME
+        value: "tu_valor_de_airtable_table_name"
