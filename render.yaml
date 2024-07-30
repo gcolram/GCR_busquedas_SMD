@@ -3,10 +3,8 @@ services:
     name: mi-api-flask
     env: python
     buildCommand: |
-      apt-get update && apt-get install -y wget
-      wget https://github.com/explosion/spacy-models/releases/download/es_core_news_md-3.1.0/es_core_news_md-3.1.0.tar.gz
-      pip install es_core_news_md-3.1.0.tar.gz
       pip install -r requirements.txt
+      python post_install.py
     startCommand: "python app.py"
     envVars:
       - key: OPENAI_API_KEY
