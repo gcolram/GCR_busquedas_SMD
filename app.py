@@ -14,9 +14,14 @@ import openai
 import spacy
 from nltk.corpus import wordnet
 from datetime import datetime
+import subprocess
 
 # Configuración de logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+# Descargar el modelo de Spacy si no está presente
+def download_spacy_model(model_name):
+    subprocess.run(["python", "-m", "spacy", "download", model_name])
 
 # Cargar las variables de entorno
 load_dotenv()
@@ -40,8 +45,9 @@ openai.api_key = OPENAI_API_KEY
 try:
     nlp = spacy.load("es_core_news_md")
 except OSError:
-    logging.error("El modelo de Spacy 'es_core_news_md' no está descargado. Ejecute 'python -m spacy download es_core_news_md' para descargarlo.")
-    exit(1)
+    logging.warning("El modelo de Spacy 'es_core_news_md' no está descargado. Intentando descargarlo...")
+    download_spacy_model("es_core_news_md")
+    nlp = spacy.load("es_core_news_md")
 
 # Definición de la aplicación Flask
 app = Flask(__name__)
