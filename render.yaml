@@ -2,7 +2,9 @@ services:
   - type: web
     name: mi-api-flask
     env: python
-    buildCommand: "pip install -r requirements.txt"
+    buildCommand: |
+      pip install -r requirements.txt
+      python -m spacy download es_core_news_md
     startCommand: "python app.py"
     envVars:
       - key: OPENAI_API_KEY
